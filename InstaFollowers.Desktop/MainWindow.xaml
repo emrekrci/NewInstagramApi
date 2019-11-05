@@ -1,0 +1,8 @@
+﻿<Window x:Name="window" x:Class="InstaFollowers.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Frame x:Name="mainFrame"></Frame>
+
+</Window>
