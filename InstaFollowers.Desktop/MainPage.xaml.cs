@@ -54,5 +54,25 @@ namespace InstaFollowers.Desktop
             txtAccessToken.Text = accessToken;
             txtUserID.Text = userID;
         }
+
+        private async void btnGetFollowerCount_Click(object sender, RoutedEventArgs e)
+        {
+            string count = "";
+            using (HttpClient client = new HttpClient())
+            {
+
+                var response = await client.GetAsync($"https://graph.instagram.com/{MainPage.userID}/?fields=username,id,media,media_count&access_token={MainPage.accessToken}");
+                var content = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<JObject>(content);
+                var media = result.GetValue("media");
+                var data = media["data"];
+                foreach (var item in data)
+                {
+                    var id = item["id"];
+                    Console.WriteLine(id + "\n");
+                }
+            }
+            txtFollowerCount.Text = count;
+        }
     }
 }
